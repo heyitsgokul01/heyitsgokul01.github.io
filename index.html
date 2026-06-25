@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gokul | Meta Ads Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1877F2;
+    --blue-dark: #0d5fcc;
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #18181f;
+    --card: #1a1a24;
+    --border: rgba(255,255,255,0.08);
+    --text: #f0f0f5;
+    --muted: #8888aa;
+    --accent: #1877F2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-weight: 700; font-size: 18px;
+    color: var(--blue);
+    letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    padding: 100px 5% 80px;
+    max-width: 900px; margin: 0 auto;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(24,119,242,0.12);
+    border: 1px solid rgba(24,119,242,0.3);
+    color: #6badf7;
+    font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 100px;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-badge span { font-size: 10px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.1; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--muted);
+    margin: 16px auto 36px;
+    max-width: 560px; line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    padding: 12px 28px; border-radius: 8px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    padding: 12px 28px; border-radius: 8px;
+    font-weight: 500; font-size: 15px;
+    text-decoration: none; border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    max-width: 860px; margin: 64px auto;
+    padding: 0 5%;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 28px; font-weight: 700;
+    color: var(--blue); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 12px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  /* SECTION */
+  section {
+    max-width: 900px; margin: 0 auto;
+    padding: 64px 5%;
+  }
+  .section-tag {
+    font-size: 12px; font-weight: 600;
+    color: var(--blue); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700; color: var(--text);
+    line-height: 1.2; margin-bottom: 12px;
+  }
+  .section-desc {
+    font-size: 16px; color: var(--muted);
+    max-width: 560px; line-height: 1.7; margin-bottom: 40px;
+  }
+  .divider {
+    border: none; border-top: 1px solid var(--border);
+    margin: 0 5%;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .service-card:hover {
+    border-color: rgba(24,119,242,0.4);
+    transform: translateY(-3px);
+  }
+  .service-icon {
+    width: 40px; height: 40px;
+    background: rgba(24,119,242,0.12);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; margin-bottom: 14px;
+  }
+  .service-card h3 {
+    font-size: 16px; font-weight: 600;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 14px; color: var(--muted); line-height: 1.6;
+  }
+
+  /* RESULTS */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .result-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .result-client {
+    font-size: 13px; color: var(--blue);
+    font-weight: 600; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .result-desc {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.6; margin-bottom: 14px;
+  }
+  .result-metrics {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .metric {
+    display: flex; flex-direction: column;
+  }
+  .metric-val {
+    font-size: 20px; font-weight: 700;
+    color: #4ade80; line-height: 1;
+  }
+  .metric-key {
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.4px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 40px; align-items: start;
+  }
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+  .about-text p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: rgba(24,119,242,0.1);
+    border: 1px solid rgba(24,119,242,0.2);
+    color: #6badf7;
+    font-size: 13px; font-weight: 500;
+    padding: 5px 12px; border-radius: 100px;
+  }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .contact-box h2 {
+    font-size: 28px; font-weight: 700;
+    margin-bottom: 12px; color: var(--text);
+  }
+  .contact-box p {
+    color: var(--muted); margin-bottom: 28px; font-size: 15px;
+  }
+  .contact-links {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .contact-link:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 32px 5%;
+    color: var(--muted); font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">GK.</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#results">Results</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span>●</span> Available for Projects</div>
+  <h1>Meta Ads that<br><em>Actually Convert</em></h1>
+  <p class="hero-sub">I help Kerala businesses grow with high-ROI Facebook & Instagram ad campaigns — from strategy to execution.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Let's Work Together</a>
+    <a href="#results" class="btn-ghost">See Results</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Clients Served</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">50+</div>
+    <div class="stat-label">Campaigns Run</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">5+</div>
+    <div class="stat-label">Industries</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">3x</div>
+    <div class="stat-label">Avg. ROAS</div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<section id="services">
+  <div class="section-tag">What I Do</div>
+  <h2 class="section-title">Full-funnel Meta Ads<br>management</h2>
+  <p class="section-desc">From campaign setup to optimization — everything your business needs to win on Facebook & Instagram.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📢</div>
+      <h3>Campaign Strategy</h3>
+      <p>Audience research, funnel planning, and objective setting tailored to your business goals.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <h3>Ad Copy & Creative</h3>
+      <p>Bilingual Malayalam-English copy that resonates with Kerala audiences and drives action.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎯</div>
+      <h3>Lead Generation</h3>
+      <p>Optimized lead ads and landing pages for education, real estate, and recruitment clients.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Performance Analysis</h3>
+      <p>Weekly reporting, A/B testing, and continuous optimization to lower your cost per result.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💬</div>
+      <h3>WhatsApp Campaigns</h3>
+      <p>Click-to-WhatsApp ads and Business API setup to connect leads directly to your team.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔄</div>
+      <h3>Retargeting & Pixel</h3>
+      <p>Meta Pixel setup, custom audiences, and retargeting funnels to maximize conversion rates.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="results">
+  <div class="section-tag">Case Studies</div>
+  <h2 class="section-title">Real results for<br>Kerala businesses</h2>
+  <p class="section-desc">Campaigns across education, real estate, recruitment, and travel — measured by real outcomes.</p>
+
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-client">Education — MasterBird</div>
+      <p class="result-desc">JEE/KEAM/NEET repeat batch lead generation campaign using Facebook lead ads targeting 18–25 age group in Kerala.</p>
+      <div class="result-metrics">
+        <div class="metric"><span class="metric-val">₹45</span><span class="metric-key">Cost/Lead</span></div>
+        <div class="metric"><span class="metric-val">200+</span><span class="metric-key">Leads/Month</span></div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-client">Real Estate — Legion Properties</div>
+      <p class="result-desc">Targeted property lead ads with Special Ad Category compliance, reaching high-intent buyers across Kerala.</p>
+      <div class="result-metrics">
+        <div class="metric"><span class="metric-val">3x</span><span class="metric-key">Lead Volume</span></div>
+        <div class="metric"><span class="metric-val">40%</span><span class="metric-key">Lower CPL</span></div>
+      </div>
+    </div>
+    <div class="result-card">
+      <div class="result-client">Travel — Godwin Tours</div>
+      <p class="result-desc">Russia visa and overseas job ad campaigns with WhatsApp integration for instant lead follow-up.</p>
+      <div class="result-metrics">
+        <div class="metric"><span class="metric-val">500+</span><span class="metric-key">Enquiries</span></div>
+        <div class="metric"><span class="metric-val">₹28</span><span class="metric-key">Cost/Lead</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="about">
+  <div class="section-tag">About</div>
+  <h2 class="section-title">Gokul — Digital Marketer<br>from Kerala</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Meta Ads specialist based in Kerala, working with local businesses across education, real estate, travel, and retail to build high-performing ad campaigns.</p>
+      <p>I specialize in bilingual ad copy, WhatsApp-first funnels, and compliance-safe campaigns that actually convert — not just get impressions.</p>
+      <p>Currently working as Digital Marketing Executive at Atlas Affordable Fashion Destination, Thodupuzha, while managing client campaigns independently.</p>
+    </div>
+    <div>
+      <p style="font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px;">Skills & Tools</p>
+      <div class="skills-list">
+        <span class="skill-tag">Meta Ads Manager</span>
+        <span class="skill-tag">Facebook Lead Ads</span>
+        <span class="skill-tag">Instagram Ads</span>
+        <span class="skill-tag">WhatsApp Business</span>
+        <span class="skill-tag">Meta Pixel</span>
+        <span class="skill-tag">Advantage+</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Bilingual Copy</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Kling AI</span>
+        <span class="skill-tag">Pinterest Ads</span>
+        <span class="skill-tag">Affiliate Marketing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<section id="contact">
+  <div class="contact-box">
+    <h2>Ready to grow your business?</h2>
+    <p>Let's talk about your goals and how Meta Ads can get you there.</p>
+    <div class="contact-links">
+      <a href="https://wa.me/91XXXXXXXXXX" class="contact-link">💬 WhatsApp Me</a>
+      <a href="mailto:your@email.com" class="contact-link">✉️ Send Email</a>
+      <a href="https://instagram.com/yourhandle" class="contact-link">📸 Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Gokul · Meta Ads Specialist · Kerala, India</p>
+</footer>
+
+</body>
+</html>
